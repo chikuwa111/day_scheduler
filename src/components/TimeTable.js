@@ -18,37 +18,36 @@ const TaskItem = SortableElement(({task, onIconClick}) => {
   )
 })
 
-const TaskList = SortableContainer(({tasks, removeTaskHandler}) => (
-  <div>
-    {tasks.map((task, index) => (
-      <TaskItem key={index} index={index} task={task} onIconClick={removeTaskHandler(index)} />
-    ))}
-  </div>
-))
+const TaskList = SortableContainer(({tasks, removeTask}) => {
+  return (
+    <div>
+      {tasks.map((task, index) => (
+        <TaskItem key={index} index={index} task={task} onIconClick={() => {removeTask(index)}} />
+      ))}
+    </div>
+  )
+})
 
 class TimeTable extends React.Component {
   onSortEnd({oldIndex, newIndex}) {
     this.props.updateTasks(arrayMove(this.props.tasks, oldIndex, newIndex))
   }
 
-  removeTaskHandler(index) {
-    return () => {
-      this.props.removeTask(index)
-    }
-  }
-
   render() {
-    const {tasks} = this.props
+    const {
+      tasks,
+      removeTask,
+    } = this.props
 
     return (
       <div>
         <div style={{float: 'left', marginLeft: 50, marginRight: 10}}>
           <Timeline />
         </div>
-        <div style={{marginTop: '1.6em'}}>
+        <div style={{paddingTop: '.8em'}}>
           <TaskList
             tasks={tasks}
-            removeTaskHandler={this.removeTaskHandler.bind(this)}
+            removeTask={removeTask}
             onSortEnd={this.onSortEnd.bind(this)}
           />
         </div>

@@ -25,6 +25,7 @@ class App extends React.Component {
   }
 
   removeTask(index) {
+    debugger
     const {tasks} = this.state
     this.setState({
       tasks: [
@@ -42,7 +43,7 @@ class App extends React.Component {
     }
     return (
       <MuiThemeProvider>
-        <div>
+        <div style={{marginTop: 40}}>
           <div style={{float: 'left', width: '70%'}}>
             <TimeTable {...props} />
           </div>
