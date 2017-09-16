@@ -1,24 +1,41 @@
 import React from 'react'
-import logo from './logo.svg'
-import './App.css'
-import Sortable from './components/Sortable'
 import TimeTable from './components/TimeTable'
 import TaskForm from './components/TaskForm'
 
 class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = this.initialState
+  }
+
+  get initialState() {
+    const initialTask = {
+      name: '',
+      length: 30,
+      initial: true,
+    }
+    return {
+      tasks: Array(36).fill(initialTask),
+    }
+  }
+
+  updateTasks(tasks) {
+    this.setState({tasks})
+  }
+
   render() {
+    const props = {
+      tasks: this.state.tasks,
+      updateTasks: this.updateTasks.bind(this),
+    }
     return (
-      <div className='App'>
-        <div className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h2>Welcome to React</h2>
+      <div>
+        <div style={{float: 'left', width: '50%'}}>
+          <TimeTable {...props} />
         </div>
-        <p className='App-intro'>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <TimeTable />
-        <TaskForm />
-        <Sortable />
+        <div style={{float: 'left', width: '50%'}}>
+          <TaskForm {...props} />
+        </div>
       </div>
     )
   }
