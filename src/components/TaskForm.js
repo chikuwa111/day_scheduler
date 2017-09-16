@@ -48,7 +48,6 @@ class TaskForm extends React.Component {
 
     return (
       <div>
-        This is TaskForm!!
         <form onSubmit={this.onSubmit.bind(this)}>
           <TextField
             floatingLabelText='Name'

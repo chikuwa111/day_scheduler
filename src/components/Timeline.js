@@ -26,7 +26,7 @@ const Timeline = () => (
 
 const style = {
   height: '1em',
-  marginBottom: '1em',
+  marginBottom: '3em',
 }
 
 export default Timeline
