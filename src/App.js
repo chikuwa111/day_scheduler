@@ -1,4 +1,5 @@
 import React from 'react'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import TimeTable from './components/TimeTable'
 import TaskForm from './components/TaskForm'
 
@@ -15,7 +16,7 @@ class App extends React.Component {
       initial: true,
     }
     return {
-      tasks: Array(36).fill(initialTask),
+      tasks: Array(5).fill(initialTask),
     }
   }
 
@@ -23,20 +24,33 @@ class App extends React.Component {
     this.setState({tasks})
   }
 
+  removeTask(index) {
+    const {tasks} = this.state
+    this.setState({
+      tasks: [
+        ...tasks.slice(0, index),
+        ...tasks.slice(index + 1),
+      ]
+    })
+  }
+
   render() {
     const props = {
       tasks: this.state.tasks,
       updateTasks: this.updateTasks.bind(this),
+      removeTask: this.removeTask.bind(this),
     }
     return (
-      <div>
-        <div style={{float: 'left', width: '50%'}}>
-          <TimeTable {...props} />
+      <MuiThemeProvider>
+        <div>
+          <div style={{float: 'left', width: '70%'}}>
+            <TimeTable {...props} />
+          </div>
+          <div style={{float: 'left', width: '30%'}}>
+            <TaskForm {...props} />
+          </div>
         </div>
-        <div style={{float: 'left', width: '50%'}}>
-          <TaskForm {...props} />
-        </div>
-      </div>
+      </MuiThemeProvider>
     )
   }
 }

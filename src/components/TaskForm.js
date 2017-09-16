@@ -1,5 +1,11 @@
 import _ from 'lodash'
 import React from 'react'
+import {
+  TextField,
+  SelectField,
+  MenuItem,
+  RaisedButton
+} from 'material-ui'
 
 class TaskForm extends React.Component {
   constructor(props) {
@@ -18,8 +24,8 @@ class TaskForm extends React.Component {
     this.setState({name: e.target.value})
   }
 
-  onChangeLength(e) {
-    this.setState({length: e.target.value})
+  onChangeLength(_event, _index, value) {
+    this.setState({length: value})
   }
 
   onSubmit(e) {
@@ -44,20 +50,30 @@ class TaskForm extends React.Component {
       <div>
         This is TaskForm!!
         <form onSubmit={this.onSubmit.bind(this)}>
-          <div>Name</div>
-          <input value={name} onChange={this.onChangeName.bind(this)}/>
+          <TextField
+            floatingLabelText='Name'
+            value={name}
+            onChange={this.onChangeName.bind(this)}
+          />
 
-          <div>Length(min)</div>
+          <SelectField
+            floatingLabelText='Length'
+            value={length}
+            onChange={this.onChangeLength.bind(this)}
+          >
+            <MenuItem value={30} primaryText='30min' />
+            <MenuItem value={60} primaryText='60min' />
+            <MenuItem value={90} primaryText='90min' />
+            <MenuItem value={120} primaryText='120min' />
+          </SelectField>
+
           <div>
-            <select value={length} onChange={this.onChangeLength.bind(this)}>
-              <option>30</option>
-              <option>60</option>
-              <option>90</option>
-              <option>120</option>
-            </select>
+            <RaisedButton
+              label='Add Task'
+              primary
+              type='submit'
+            />
           </div>
-
-          <button type='submit'>Add Task!</button>
         </form>
       </div>
     )
