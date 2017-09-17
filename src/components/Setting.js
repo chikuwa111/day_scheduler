@@ -23,7 +23,6 @@ const Setting = (props) => {
     <Paper
       style={{padding: 10, marginRight: 50, marginTop: 20}}
     >
-      <div>Setting</div>
       <div>
         <SelectField
           autoWidth
@@ -47,6 +46,14 @@ const Setting = (props) => {
             <MenuItem key={v} value={v} primaryText={`${v}:00`}/>
           ))}
         </SelectField>
+      </div>
+
+      <div style={{marginBottom: 12}}>
+        <RaisedButton
+          primary
+          label='FILL TIMETABLE'
+          onClick={() => {if(window.confirm('Are you sure?')){fillTimeTable()}}}
+        />
       </div>
 
       <div>

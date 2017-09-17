@@ -31,7 +31,6 @@ class Form extends React.Component {
       '#ffd180', // orange
       '#80d8ff', // blue
       '#ccff90', // green
-      '#cfd8dc', // gray
     ]
   }
 
@@ -61,7 +60,7 @@ class Form extends React.Component {
       >
         <form onSubmit={this.onSubmit.bind(this)}>
           <TextField
-            floatingLabelText='Name'
+            hintText='Eat breakfast'
             value={name}
             onChange={this.onChangeName.bind(this)}
           />

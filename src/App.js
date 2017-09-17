@@ -11,6 +11,7 @@ class App extends React.Component {
     this.updateTasksHandler = this.updateTasks.bind(this)
     this.removeTaskHandler = this.removeTask.bind(this)
     this.addTaskHandler = this.addTask.bind(this)
+    this.fillTimeTableHandler = this.fillTimeTable.bind(this)
     this.updateTimelineStartHandler = this.updateTimelineStart.bind(this)
     this.updateTimelineEndHandler = this.updateTimelineEnd.bind(this)
   }
@@ -51,6 +52,23 @@ class App extends React.Component {
     })
   }
 
+  fillTimeTable() {
+    const {tasks, start, end} = this.state
+    const wholeMinutesInTable = (end - start) * 60
+    const sumMinutesOfTasks = tasks.reduce((sum, task) => (sum + task.length), 0)
+    let roomMinutesInTable = wholeMinutesInTable - sumMinutesOfTasks
+    let newTasks = tasks.slice(0)
+    while(roomMinutesInTable > 0) {
+      newTasks.unshift({
+        name: '',
+        color: '#fafafa',
+        length: roomMinutesInTable >= 30 ? 30 : roomMinutesInTable
+      })
+      roomMinutesInTable -= 30
+    }
+    this.setState({tasks: newTasks})
+  }
+
   updateTimelineStart(time) {
     this.setState({start: time})
   }
@@ -75,6 +93,7 @@ class App extends React.Component {
       end: this.state.end,
       updateTimelineStart: this.updateTimelineStartHandler,
       updateTimelineEnd: this.updateTimelineEndHandler,
+      fillTimeTable: this.fillTimeTableHandler,
       updateTasks: this.updateTasksHandler,
     }
     return (
