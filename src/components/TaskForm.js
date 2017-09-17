@@ -13,10 +13,25 @@ class TaskForm extends React.Component {
     this.state = this.initialState
   }
 
+  get Lengths() {
+    return [30, 60, 90, 120]
+  }
+
+  get Colors() {
+    return [
+      '#fafafa', // white
+      '#ffd180', // orange
+      '#80d8ff', // blue
+      '#ccff90', // green
+      '#cfd8dc', // gray
+    ]
+  }
+
   get initialState() {
     return {
       name: '',
       length: 30,
+      color: '#fafafa',
     }
   }
 
@@ -28,18 +43,22 @@ class TaskForm extends React.Component {
     this.setState({length: value})
   }
 
+  onChangeColor(value) {
+    this.setState({color: value})
+  }
+
   onSubmit(e) {
     e.preventDefault()
 
     const tasks = this.props.tasks.slice(0)
-    const {name, length} = this.state
-    tasks.unshift({name, length})
+    const {name, length, color} = this.state
+    tasks.unshift({name, length, color})
 
     this.props.updateTasks(tasks)
   }
 
   render() {
-    const {name, length} = this.state
+    const {name, length, color} = this.state
 
     return (
       <Paper
@@ -55,7 +74,7 @@ class TaskForm extends React.Component {
           <p>Length: {length}min</p>
           <div style={{display: 'flex', justifyContent: 'space-around'}}>
             {
-              [30, 60, 90, 120].map((v) => (
+              this.Lengths.map((v) => (
                 <FloatingActionButton
                   key={v}
                   mini
@@ -72,7 +91,23 @@ class TaskForm extends React.Component {
             max={150}
             step={1}
             onChange={this.onChangeLength.bind(this)}
+            sliderStyle={{marginBottom: 24}}
           />
+
+          <p>Color</p>
+          <div style={{display: 'flex', justifyContent: 'space-around', marginBottom: 10}}>
+            {
+              this.Colors.map((v) => (
+                <FloatingActionButton
+                  key={v}
+                  mini
+                  backgroundColor={v}
+                  children={(v === color) && <span style={{color: 'black'}}>V</span>}
+                  onClick={() => {this.onChangeColor(v)}}
+                />
+              ))
+            }
+          </div>
 
           <div>
             <RaisedButton

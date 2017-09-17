@@ -15,7 +15,7 @@ class App extends React.Component {
     const initialTask = {
       name: '',
       length: 30,
-      color: 'white',
+      color: '#fafafa',
     }
     return {
       tasks: Array(36).fill(initialTask),
