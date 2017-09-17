@@ -1,9 +1,9 @@
-import _ from 'lodash'
 import React from 'react'
 import {
+  Paper,
   TextField,
-  SelectField,
-  MenuItem,
+  Slider,
+  FloatingActionButton,
   RaisedButton
 } from 'material-ui'
 
@@ -24,20 +24,15 @@ class TaskForm extends React.Component {
     this.setState({name: e.target.value})
   }
 
-  onChangeLength(_event, _index, value) {
+  onChangeLength(_event, value) {
     this.setState({length: value})
   }
 
   onSubmit(e) {
     e.preventDefault()
 
-    let tasks = this.props.tasks.slice(0)
+    const tasks = this.props.tasks.slice(0)
     const {name, length} = this.state
-
-    for(let i = 0; i < length / 30; i++) {
-      const index = _.findIndex(tasks, 'initial')
-      _.pullAt(tasks, [index])
-    }
     tasks.unshift({name, length})
 
     this.props.updateTasks(tasks)
@@ -47,7 +42,9 @@ class TaskForm extends React.Component {
     const {name, length} = this.state
 
     return (
-      <div>
+      <Paper
+        style={{padding: 10, marginRight: 50}}
+      >
         <form onSubmit={this.onSubmit.bind(this)}>
           <TextField
             floatingLabelText='Name'
@@ -55,16 +52,27 @@ class TaskForm extends React.Component {
             onChange={this.onChangeName.bind(this)}
           />
 
-          <SelectField
-            floatingLabelText='Length'
+          <p>Length: {length}min</p>
+          <div style={{display: 'flex', justifyContent: 'space-around'}}>
+            {
+              [30, 60, 90, 120].map((v) => (
+                <FloatingActionButton
+                  key={v}
+                  mini
+                  disabled={v === length}
+                  children={<span style={{color: 'white', textWeight: 'bold'}}>{v}</span>}
+                  onClick={() => {this.onChangeLength(null, v)}}
+                />
+              ))
+            }
+          </div>
+          <Slider
             value={length}
+            min={0}
+            max={150}
+            step={1}
             onChange={this.onChangeLength.bind(this)}
-          >
-            <MenuItem value={30} primaryText='30min' />
-            <MenuItem value={60} primaryText='60min' />
-            <MenuItem value={90} primaryText='90min' />
-            <MenuItem value={120} primaryText='120min' />
-          </SelectField>
+          />
 
           <div>
             <RaisedButton
@@ -74,7 +82,7 @@ class TaskForm extends React.Component {
             />
           </div>
         </form>
-      </div>
+      </Paper>
     )
   }
 }
