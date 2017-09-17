@@ -7,16 +7,18 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = this.initialState
+    this.updateTasksHandler = this.updateTasks.bind(this)
+    this.removeTaskHandler = this.removeTask.bind(this)
   }
 
   get initialState() {
     const initialTask = {
       name: '',
       length: 30,
-      initial: true,
+      color: 'white',
     }
     return {
-      tasks: Array(5).fill(initialTask),
+      tasks: Array(36).fill(initialTask),
     }
   }
 
@@ -25,7 +27,6 @@ class App extends React.Component {
   }
 
   removeTask(index) {
-    debugger
     const {tasks} = this.state
     this.setState({
       tasks: [
@@ -38,8 +39,8 @@ class App extends React.Component {
   render() {
     const props = {
       tasks: this.state.tasks,
-      updateTasks: this.updateTasks.bind(this),
-      removeTask: this.removeTask.bind(this),
+      updateTasks: this.updateTasksHandler,
+      removeTask: this.removeTaskHandler,
     }
     return (
       <MuiThemeProvider>

@@ -12,8 +12,8 @@ const TaskItem = SortableElement(({task, onIconClick}) => {
     <Paper
       style={{width: '80%', height: `${task.length / 15}em`, display: 'flex', alignItems: 'center'}}
     >
-      <i onClick={onIconClick} style={{cursor: 'pointer'}}>×</i>
-      <span style={{marginLeft: '5%', fontSize: `${0.8 + task.length / 150}em`}}>{task.name}</span>
+      <i onClick={onIconClick} style={{cursor: 'pointer', float: 'left', paddingLeft: 3}}>×</i>
+      <span style={{paddingLeft: '2%', fontSize: `${0.8 + task.length / 150}em`, width: '98%'}}>{task.name}</span>
     </Paper>
   )
 })
@@ -49,6 +49,8 @@ class TimeTable extends React.Component {
             tasks={tasks}
             removeTask={removeTask}
             onSortEnd={this.onSortEnd.bind(this)}
+            pressDelay={200}
+            useWindowAsScrollContainer
           />
         </div>
       </div>
