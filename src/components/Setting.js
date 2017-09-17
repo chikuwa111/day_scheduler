@@ -1,10 +1,8 @@
 import React from 'react'
-import {
-  Paper,
-  SelectField,
-  MenuItem,
-  RaisedButton,
-} from 'material-ui'
+import Paper from 'material-ui/Paper'
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
+import RaisedButton from 'material-ui/RaisedButton'
 
 const Setting = (props) => {
   const {

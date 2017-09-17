@@ -1,11 +1,9 @@
 import React from 'react'
-import {
-  Paper,
-  TextField,
-  Slider,
-  FloatingActionButton,
-  RaisedButton,
-} from 'material-ui'
+import Paper from 'material-ui/Paper'
+import TextField from 'material-ui/TextField'
+import Slider from 'material-ui/Slider'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import RaisedButton from 'material-ui/RaisedButton'
 
 class Form extends React.Component {
   constructor(props) {

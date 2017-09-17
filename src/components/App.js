@@ -1,8 +1,8 @@
 import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import TimeTable from './components/TimeTable'
-import Form from './components/Form'
-import Setting from './components/Setting'
+import TimeTable from '../components/TimeTable'
+import Form from '../components/Form'
+import Setting from '../components/Setting'
 
 class App extends React.Component {
   constructor(props) {
