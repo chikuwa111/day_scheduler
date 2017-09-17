@@ -1,5 +1,7 @@
 import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import throttle from 'lodash/throttle'
+import {loadState, saveState} from '../lib/localStorage'
 import TimeTable from '../components/TimeTable'
 import Form from '../components/Form'
 import Setting from '../components/Setting'
@@ -8,6 +10,8 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = this.initialState
+    this.saveStateLocal = throttle((state) => {saveState(state)}, 1000)
+
     this.updateTasksAction = this.updateTasks.bind(this)
     this.removeTaskAction = this.removeTask.bind(this)
     this.addTaskAction = this.addTask.bind(this)
@@ -18,6 +22,9 @@ class App extends React.Component {
   }
 
   get initialState() {
+    const localState = loadState()
+    if (localState) return localState
+
     const initialTask = {
       name: '',
       length: 30,
@@ -28,6 +35,10 @@ class App extends React.Component {
       start: 6,
       end: 24,
     }
+  }
+
+  componentDidUpdate() {
+    this.saveStateLocal(this.state)
   }
 
   updateTasks(tasks) {
