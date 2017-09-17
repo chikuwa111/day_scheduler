@@ -12,8 +12,9 @@ const Setting = (props) => {
     end,
     updateTimelineStart,
     updateTimelineEnd,
-    updateTasks,
     fillTimeTable,
+    removeExtraTasks,
+    updateTasks,
   } = props
   const {min, max} = Span
   const startSelectSpan = Array.from({length: end - min}, (_, i) => min + i)
@@ -53,6 +54,14 @@ const Setting = (props) => {
           primary
           label='FILL TIMETABLE'
           onClick={() => {if(window.confirm('Are you sure?')){fillTimeTable()}}}
+        />
+      </div>
+
+      <div style={{marginBottom: 12}}>
+        <RaisedButton
+          secondary
+          label='DELETE EXTRA'
+          onClick={() => {if(window.confirm('Are you sure?')){removeExtraTasks()}}}
         />
       </div>
 
