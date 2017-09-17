@@ -1,5 +1,4 @@
 import React from 'react'
-import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import Slider from 'material-ui/Slider'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
@@ -53,64 +52,60 @@ class Form extends React.Component {
     const {name, length, color} = this.state
 
     return (
-      <Paper
-        style={{padding: 10, marginRight: 50}}
-      >
-        <form onSubmit={this.onSubmit.bind(this)}>
-          <TextField
-            hintText='Eat breakfast'
-            value={name}
-            onChange={this.onNameChange.bind(this)}
-            style={{width: '100%'}}
-          />
+      <form onSubmit={this.onSubmit.bind(this)} style={{padding: 10}}>
+        <TextField
+          hintText='Eat breakfast'
+          value={name}
+          onChange={this.onNameChange.bind(this)}
+          style={{width: '100%'}}
+        />
 
         <p>Length: {length}min</p>
-          <div style={{display: 'flex', justifyContent: 'space-around'}}>
-            {
-              this.Lengths.map((v) => (
-                <FloatingActionButton
-                  key={v}
-                  mini
-                  disabled={v === length}
-                  children={<span style={{color: 'white', textWeight: 'bold'}}>{v}</span>}
-                  onClick={() => {this.onLengthChange(null, v)}}
-                />
-              ))
-            }
-          </div>
-          <Slider
-            value={length}
-            min={0}
-            max={150}
-            step={5}
-            onChange={this.onLengthChange.bind(this)}
-            sliderStyle={{marginBottom: 24}}
+        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+          {
+            this.Lengths.map((v) => (
+              <FloatingActionButton
+                key={v}
+                mini
+                disabled={v === length}
+                children={<span style={{color: 'white', textWeight: 'bold'}}>{v}</span>}
+                onClick={() => {this.onLengthChange(null, v)}}
+              />
+            ))
+          }
+        </div>
+        <Slider
+          value={length}
+          min={0}
+          max={150}
+          step={5}
+          onChange={this.onLengthChange.bind(this)}
+          sliderStyle={{marginBottom: 24}}
+        />
+
+        <p>Color</p>
+        <div style={{display: 'flex', justifyContent: 'space-around', marginBottom: 10}}>
+          {
+            this.Colors.map((v) => (
+              <FloatingActionButton
+                key={v}
+                mini
+                backgroundColor={v}
+                children={(v === color) && <span style={{color: 'black'}}>✔︎</span>}
+                onClick={() => {this.onColorChange(v)}}
+              />
+            ))
+          }
+        </div>
+
+        <div style={{marginTop: 20}}>
+          <RaisedButton
+            label='ADD SCHEDULE'
+            primary
+            type='submit'
           />
-
-          <p>Color</p>
-          <div style={{display: 'flex', justifyContent: 'space-around', marginBottom: 10}}>
-            {
-              this.Colors.map((v) => (
-                <FloatingActionButton
-                  key={v}
-                  mini
-                  backgroundColor={v}
-                  children={(v === color) && <span style={{color: 'black'}}>✔︎</span>}
-                  onClick={() => {this.onColorChange(v)}}
-                />
-              ))
-            }
-          </div>
-
-          <div style={{marginTop: 20}}>
-            <RaisedButton
-              label='ADD SCHEDULE'
-              primary
-              type='submit'
-            />
-          </div>
-        </form>
-      </Paper>
+        </div>
+      </form>
     )
   }
 }

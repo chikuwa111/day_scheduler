@@ -1,5 +1,4 @@
 import React from 'react'
-import Paper from 'material-ui/Paper'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -19,9 +18,7 @@ const Setting = (props) => {
   const endSelectSpan = Array.from({length: max - start}, (_, i) => start + i + 1)
 
   return (
-    <Paper
-      style={{padding: 10, marginRight: 50, marginTop: 20}}
-    >
+    <div style={{padding: 10}}>
       <div>
         <SelectField
           autoWidth
@@ -70,7 +67,7 @@ const Setting = (props) => {
           onClick={() => {if(window.confirm('Are you sure?')){updateTasks([])}}}
         />
       </div>
-    </Paper>
+    </div>
   )
 }
 

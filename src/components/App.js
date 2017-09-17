@@ -1,7 +1,13 @@
 import React from 'react'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import throttle from 'lodash/throttle'
+import MediaQuery from 'react-responsive'
 import {loadState, saveState} from '../lib/localStorage'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import Paper from 'material-ui/Paper'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import ContentAdd from 'material-ui/svg-icons/content/add'
+import ContentSettings from 'material-ui/svg-icons/action/settings'
+import Dialog from 'material-ui/Dialog'
 import TimeTable from '../components/TimeTable'
 import Form from '../components/Form'
 import Setting from '../components/Setting'
@@ -19,11 +25,21 @@ class App extends React.Component {
     this.removeExtraTasksAction = this.removeExtraTasks.bind(this)
     this.updateTimelineStartAction = this.updateTimelineStart.bind(this)
     this.updateTimelineEndAction = this.updateTimelineEnd.bind(this)
+    this.openFormModalAction = this.openFormModal.bind(this)
+    this.closeFormModalAction = this.closeFormModal.bind(this)
+    this.openSettingModalAction = this.openSettingModal.bind(this)
+    this.closeSettingModalAction = this.closeSettingModal.bind(this)
   }
 
   get initialState() {
     const localState = loadState()
-    if (localState) return localState
+    if (localState) {
+      return {
+        ...localState,
+        isFormModalOpen: false,
+        isSettingModalOpen: false,
+      }
+    }
 
     const initialTask = {
       name: '',
@@ -34,11 +50,17 @@ class App extends React.Component {
       tasks: Array(36).fill(initialTask),
       start: 6,
       end: 24,
+      isFormModalOpen: false,
+      isSettingModalOpen: false,
     }
   }
 
   componentDidUpdate() {
-    this.saveStateLocal(this.state)
+    this.saveStateLocal({
+      tasks: this.state.tasks,
+      start: this.state.start,
+      end: this.state.end,
+    })
   }
 
   updateTasks(tasks) {
@@ -106,6 +128,22 @@ class App extends React.Component {
     this.setState({end: time})
   }
 
+  openFormModal() {
+    this.setState({isFormModalOpen: true})
+  }
+
+  closeFormModal() {
+    this.setState({isFormModalOpen: false})
+  }
+
+  openSettingModal() {
+    this.setState({isSettingModalOpen: true})
+  }
+
+  closeSettingModal() {
+    this.setState({isSettingModalOpen: false})
+  }
+
   render() {
     const TimeTableProps = {
       start: this.state.start,
@@ -126,16 +164,62 @@ class App extends React.Component {
       removeExtraTasks: this.removeExtraTasksAction,
       updateTasks: this.updateTasksAction,
     }
+
     return (
       <MuiThemeProvider>
-        <div style={{marginTop: 40}}>
-          <div style={{float: 'left', width: '70%'}}>
+        <div style={{marginTop: 20}}>
+
+        <MediaQuery minWidth={768}>
+          <div style={{float: 'left', width: '60%', marginLeft: '5%', marginRight: '5%'}}>
             <TimeTable {...TimeTableProps} />
           </div>
-          <div style={{float: 'left', width: '30%'}}>
-            <Form {...FormProps} />
-            <Setting {...SettingProps}/>
+          <div style={{float: 'left', width: '25%', marginRight: '5%'}}>
+            <Paper>
+              <Form {...FormProps} />
+            </Paper>
+            <Paper style={{marginTop: 20}}>
+              <Setting {...SettingProps}/>
+            </Paper>
           </div>
+        </MediaQuery>
+
+        <MediaQuery maxWidth={767}>
+          <div style={{width: '90%', marginLeft: '5%', marginRight: '5%'}}>
+            <TimeTable {...TimeTableProps} />
+          </div>
+          <div style={{position: 'fixed', bottom: '2%', right: '2%', textAlign: 'right'}}>
+            <div style={{marginBottom: 5}}>
+              <FloatingActionButton
+                mini
+                children={<ContentSettings />}
+                onClick={this.openSettingModalAction}
+              />
+            </div>
+            <div>
+              <FloatingActionButton
+                secondary
+                children={<ContentAdd />}
+
+                onClick={this.openFormModalAction}
+              />
+            </div>
+          </div>
+          <Dialog
+            autoScrollBodyContent
+            open={this.state.isFormModalOpen}
+            onRequestClose={this.closeFormModalAction}
+          >
+            <Form {...FormProps} />
+          </Dialog>
+          <Dialog
+            autoScrollBodyContent
+            open={this.state.isSettingModalOpen}
+            onRequestClose={this.closeSettingModalAction}
+          >
+            <Setting {...SettingProps}/>
+          </Dialog>
+        </MediaQuery>
+
         </div>
       </MuiThemeProvider>
     )
