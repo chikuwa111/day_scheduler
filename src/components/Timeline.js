@@ -6,7 +6,7 @@ const Timeline = ({start, end}) => {
     <div>
       {timelineArray.map((time, i) => (
         <div key={time}>
-          <div style={style}>{`${time}:00`}</div>
+          <div style={style}>{`${time}:00 -`}</div>
           {i !== timelineArray.length - 1 && <div style={style}>-</div>}
         </div>
       ))}
