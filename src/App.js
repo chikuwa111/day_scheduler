@@ -1,7 +1,7 @@
 import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import TimeTable from './components/TimeTable'
-import TaskForm from './components/TaskForm'
+import Form from './components/Form'
 import Setting from './components/Setting'
 
 class App extends React.Component {
@@ -67,7 +67,7 @@ class App extends React.Component {
       updateTasks: this.updateTasksHandler,
       removeTask: this.removeTaskHandler,
     }
-    const TaskFormProps = {
+    const FormProps = {
       addTask: this.addTaskHandler,
     }
     const SettingProps = {
@@ -84,7 +84,7 @@ class App extends React.Component {
             <TimeTable {...TimeTableProps} />
           </div>
           <div style={{float: 'left', width: '30%'}}>
-            <TaskForm {...TaskFormProps} />
+            <Form {...FormProps} />
             <Setting {...SettingProps}/>
           </div>
         </div>

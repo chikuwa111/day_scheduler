@@ -7,7 +7,7 @@ import {
   RaisedButton,
 } from 'material-ui'
 
-class TaskForm extends React.Component {
+class Form extends React.Component {
   constructor(props) {
     super(props)
     this.state = this.initialState
@@ -106,7 +106,7 @@ class TaskForm extends React.Component {
 
           <div style={{marginTop: 20}}>
             <RaisedButton
-              label='Add Task'
+              label='ADD SCHEDULE'
               primary
               type='submit'
             />
@@ -117,4 +117,4 @@ class TaskForm extends React.Component {
   }
 }
 
-export default TaskForm
+export default Form
