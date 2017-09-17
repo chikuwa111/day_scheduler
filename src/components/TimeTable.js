@@ -35,6 +35,8 @@ class TimeTable extends React.Component {
 
   render() {
     const {
+      start,
+      end,
       tasks,
       removeTask,
     } = this.props
@@ -42,7 +44,7 @@ class TimeTable extends React.Component {
     return (
       <div>
         <div style={{float: 'left', marginLeft: 50, marginRight: 10}}>
-          <Timeline />
+          <Timeline start={start} end={end} />
         </div>
         <div style={{paddingTop: '.8em'}}>
           <TaskList

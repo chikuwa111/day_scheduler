@@ -4,13 +4,21 @@ import {
   TextField,
   Slider,
   FloatingActionButton,
-  RaisedButton
+  RaisedButton,
 } from 'material-ui'
 
 class TaskForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = this.initialState
+  }
+
+  get initialState() {
+    return {
+      name: '',
+      length: 30,
+      color: '#fafafa',
+    }
   }
 
   get Lengths() {
@@ -25,14 +33,6 @@ class TaskForm extends React.Component {
       '#ccff90', // green
       '#cfd8dc', // gray
     ]
-  }
-
-  get initialState() {
-    return {
-      name: '',
-      length: 30,
-      color: '#fafafa',
-    }
   }
 
   onChangeName(e) {
@@ -102,7 +102,7 @@ class TaskForm extends React.Component {
                   key={v}
                   mini
                   backgroundColor={v}
-                  children={(v === color) && <span style={{color: 'black'}}>V</span>}
+                  children={(v === color) && <span style={{color: 'black'}}>✔︎</span>}
                   onClick={() => {this.onChangeColor(v)}}
                 />
               ))
