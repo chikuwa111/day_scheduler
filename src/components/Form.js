@@ -61,6 +61,7 @@ class Form extends React.Component {
             hintText='Eat breakfast'
             value={name}
             onChange={this.onNameChange.bind(this)}
+            style={{width: '100%'}}
           />
 
         <p>Length: {length}min</p>
@@ -81,7 +82,7 @@ class Form extends React.Component {
             value={length}
             min={0}
             max={150}
-            step={10}
+            step={5}
             onChange={this.onLengthChange.bind(this)}
             sliderStyle={{marginBottom: 24}}
           />

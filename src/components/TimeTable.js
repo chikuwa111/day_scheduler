@@ -10,7 +10,7 @@ import Timeline from '../components/Timeline'
 const TaskItem = SortableElement(({task, onIconClick}) => {
   return (
     <Paper
-      style={{width: '80%', height: `${task.length / 15}em`, backgroundColor: task.color, display: 'flex', alignItems: 'center'}}
+      style={{maxWidth: '90%', height: `${task.length / 15}em`, backgroundColor: task.color, display: 'flex', alignItems: 'center'}}
     >
       <i onClick={onIconClick} style={{cursor: 'pointer', float: 'left', paddingLeft: 3}}>×</i>
       <span style={{paddingLeft: '2%', fontSize: `${0.8 + task.length / 150}em`, width: '98%'}}>{task.name}</span>
@@ -42,8 +42,8 @@ class TimeTable extends React.Component {
     } = this.props
 
     return (
-      <div>
-        <div style={{float: 'left', marginLeft: 50, marginRight: 1}}>
+      <div style={{marginLeft: '5%', marginRight: '5%'}}>
+        <div style={{float: 'left'}}>
           <Timeline start={start} end={end} />
         </div>
         <div style={{paddingTop: '.8em'}}>

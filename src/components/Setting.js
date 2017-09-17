@@ -28,10 +28,10 @@ const Setting = (props) => {
           style={{width: '50%'}}
           value={start}
           onChange={(_e, _i, v) => {updateTimelineStart(v)}}
-          floatingLabelText='start'
+          floatingLabelText='start hour'
         >
           {startSelectSpan.map((v) => (
-            <MenuItem key={v} value={v} primaryText={`${v}:00`}/>
+            <MenuItem key={v} value={v} primaryText={`${v}`}/>
           ))}
         </SelectField>
         <SelectField
@@ -39,10 +39,10 @@ const Setting = (props) => {
           style={{width: '50%'}}
           value={end}
           onChange={(_e, _i, v) => {updateTimelineEnd(v)}}
-          floatingLabelText='end'
+          floatingLabelText='end hour'
         >
           {endSelectSpan.map((v) => (
-            <MenuItem key={v} value={v} primaryText={`${v}:00`}/>
+            <MenuItem key={v} value={v} primaryText={`${v}`}/>
           ))}
         </SelectField>
       </div>
