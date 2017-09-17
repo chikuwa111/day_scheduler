@@ -15,7 +15,8 @@ const TaskItem = SortableElement(({task, onIconClick}) => {
         height: `${task.length / 15}em`,
         backgroundColor: task.color,
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        cursor: 'move',
       }}
     >
       <i onClick={onIconClick} style={{cursor: 'pointer', float: 'left', paddingLeft: 3}}>×</i>
