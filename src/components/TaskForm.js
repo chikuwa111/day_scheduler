@@ -49,12 +49,7 @@ class TaskForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault()
-
-    const tasks = this.props.tasks.slice(0)
-    const {name, length, color} = this.state
-    tasks.unshift({name, length, color})
-
-    this.props.updateTasks(tasks)
+    this.props.addTask(this.state)
   }
 
   render() {
@@ -71,7 +66,7 @@ class TaskForm extends React.Component {
             onChange={this.onChangeName.bind(this)}
           />
 
-          <p>Length: {length}min</p>
+        <p>Length: {length}min</p>
           <div style={{display: 'flex', justifyContent: 'space-around'}}>
             {
               this.Lengths.map((v) => (
@@ -89,7 +84,7 @@ class TaskForm extends React.Component {
             value={length}
             min={0}
             max={150}
-            step={1}
+            step={10}
             onChange={this.onChangeLength.bind(this)}
             sliderStyle={{marginBottom: 24}}
           />
@@ -109,7 +104,7 @@ class TaskForm extends React.Component {
             }
           </div>
 
-          <div>
+          <div style={{marginTop: 20}}>
             <RaisedButton
               label='Add Task'
               primary

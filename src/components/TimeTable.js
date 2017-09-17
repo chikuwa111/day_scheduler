@@ -43,7 +43,7 @@ class TimeTable extends React.Component {
 
     return (
       <div>
-        <div style={{float: 'left', marginLeft: 50, marginRight: 10}}>
+        <div style={{float: 'left', marginLeft: 50, marginRight: 1}}>
           <Timeline start={start} end={end} />
         </div>
         <div style={{paddingTop: '.8em'}}>

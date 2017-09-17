@@ -10,6 +10,7 @@ class App extends React.Component {
     this.state = this.initialState
     this.updateTasksHandler = this.updateTasks.bind(this)
     this.removeTaskHandler = this.removeTask.bind(this)
+    this.addTaskHandler = this.addTask.bind(this)
     this.updateTimelineStartHandler = this.updateTimelineStart.bind(this)
     this.updateTimelineEndHandler = this.updateTimelineEnd.bind(this)
   }
@@ -41,6 +42,15 @@ class App extends React.Component {
     })
   }
 
+  addTask(task) {
+    this.setState({
+      tasks: [
+        task,
+        ...this.state.tasks,
+      ]
+    })
+  }
+
   updateTimelineStart(time) {
     this.setState({start: time})
   }
@@ -50,28 +60,32 @@ class App extends React.Component {
   }
 
   render() {
-    const props = {
+    const TimeTableProps = {
       start: this.state.start,
       end: this.state.end,
       tasks: this.state.tasks,
       updateTasks: this.updateTasksHandler,
       removeTask: this.removeTaskHandler,
     }
-    const settingProps = {
+    const TaskFormProps = {
+      addTask: this.addTaskHandler,
+    }
+    const SettingProps = {
       start: this.state.start,
       end: this.state.end,
       updateTimelineStart: this.updateTimelineStartHandler,
       updateTimelineEnd: this.updateTimelineEndHandler,
+      updateTasks: this.updateTasksHandler,
     }
     return (
       <MuiThemeProvider>
         <div style={{marginTop: 40}}>
           <div style={{float: 'left', width: '70%'}}>
-            <TimeTable {...props} />
+            <TimeTable {...TimeTableProps} />
           </div>
           <div style={{float: 'left', width: '30%'}}>
-            <TaskForm {...props} />
-            <Setting {...settingProps}/>
+            <TaskForm {...TaskFormProps} />
+            <Setting {...SettingProps}/>
           </div>
         </div>
       </MuiThemeProvider>
