@@ -34,15 +34,15 @@ class Form extends React.Component {
     ]
   }
 
-  onChangeName(e) {
+  onNameChange(e) {
     this.setState({name: e.target.value})
   }
 
-  onChangeLength(_event, value) {
+  onLengthChange(_event, value) {
     this.setState({length: value})
   }
 
-  onChangeColor(value) {
+  onColorChange(value) {
     this.setState({color: value})
   }
 
@@ -62,7 +62,7 @@ class Form extends React.Component {
           <TextField
             hintText='Eat breakfast'
             value={name}
-            onChange={this.onChangeName.bind(this)}
+            onChange={this.onNameChange.bind(this)}
           />
 
         <p>Length: {length}min</p>
@@ -74,7 +74,7 @@ class Form extends React.Component {
                   mini
                   disabled={v === length}
                   children={<span style={{color: 'white', textWeight: 'bold'}}>{v}</span>}
-                  onClick={() => {this.onChangeLength(null, v)}}
+                  onClick={() => {this.onLengthChange(null, v)}}
                 />
               ))
             }
@@ -84,7 +84,7 @@ class Form extends React.Component {
             min={0}
             max={150}
             step={10}
-            onChange={this.onChangeLength.bind(this)}
+            onChange={this.onLengthChange.bind(this)}
             sliderStyle={{marginBottom: 24}}
           />
 
@@ -97,7 +97,7 @@ class Form extends React.Component {
                   mini
                   backgroundColor={v}
                   children={(v === color) && <span style={{color: 'black'}}>✔︎</span>}
-                  onClick={() => {this.onChangeColor(v)}}
+                  onClick={() => {this.onColorChange(v)}}
                 />
               ))
             }

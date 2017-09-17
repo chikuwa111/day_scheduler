@@ -8,13 +8,13 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = this.initialState
-    this.updateTasksHandler = this.updateTasks.bind(this)
-    this.removeTaskHandler = this.removeTask.bind(this)
-    this.addTaskHandler = this.addTask.bind(this)
-    this.fillTimeTableHandler = this.fillTimeTable.bind(this)
-    this.removeExtraTasksHandler = this.removeExtraTasks.bind(this)
-    this.updateTimelineStartHandler = this.updateTimelineStart.bind(this)
-    this.updateTimelineEndHandler = this.updateTimelineEnd.bind(this)
+    this.updateTasksAction = this.updateTasks.bind(this)
+    this.removeTaskAction = this.removeTask.bind(this)
+    this.addTaskAction = this.addTask.bind(this)
+    this.fillTimeTableAction = this.fillTimeTable.bind(this)
+    this.removeExtraTasksAction = this.removeExtraTasks.bind(this)
+    this.updateTimelineStartAction = this.updateTimelineStart.bind(this)
+    this.updateTimelineEndAction = this.updateTimelineEnd.bind(this)
   }
 
   get initialState() {
@@ -100,20 +100,20 @@ class App extends React.Component {
       start: this.state.start,
       end: this.state.end,
       tasks: this.state.tasks,
-      updateTasks: this.updateTasksHandler,
-      removeTask: this.removeTaskHandler,
+      updateTasks: this.updateTasksAction,
+      removeTask: this.removeTaskAction,
     }
     const FormProps = {
-      addTask: this.addTaskHandler,
+      addTask: this.addTaskAction,
     }
     const SettingProps = {
       start: this.state.start,
       end: this.state.end,
-      updateTimelineStart: this.updateTimelineStartHandler,
-      updateTimelineEnd: this.updateTimelineEndHandler,
-      fillTimeTable: this.fillTimeTableHandler,
-      removeExtraTasks: this.removeExtraTasksHandler,
-      updateTasks: this.updateTasksHandler,
+      updateTimelineStart: this.updateTimelineStartAction,
+      updateTimelineEnd: this.updateTimelineEndAction,
+      fillTimeTable: this.fillTimeTableAction,
+      removeExtraTasks: this.removeExtraTasksAction,
+      updateTasks: this.updateTasksAction,
     }
     return (
       <MuiThemeProvider>
