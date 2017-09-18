@@ -20,7 +20,7 @@ const TaskItem = SortableElement(({task, onIconClick}) => {
       }}
     >
       <i onClick={onIconClick} style={{cursor: 'pointer', float: 'left', paddingLeft: 3}}>×</i>
-      <span style={{paddingLeft: '2%', fontSize: `${0.8 + task.length / 150}em`, width: '98%'}}>{task.name}</span>
+      <div style={{paddingLeft: '2%', fontSize: `${0.8 + task.length / 150}em`, width: '98%', wordBreak: 'break-all'}}>{task.name}</div>
     </Paper>
   )
 })

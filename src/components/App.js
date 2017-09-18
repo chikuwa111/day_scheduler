@@ -184,7 +184,7 @@ class App extends React.Component {
         </MediaQuery>
 
         <MediaQuery maxWidth={767}>
-          <div style={{width: '90%', marginLeft: '5%', marginRight: '5%'}}>
+          <div style={{width: '96%', marginLeft: '2%', marginRight: '2%'}}>
             <TimeTable {...TimeTableProps} />
           </div>
           <div style={{position: 'fixed', bottom: '2%', right: '2%', textAlign: 'right'}}>
