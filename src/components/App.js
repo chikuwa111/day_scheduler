@@ -2,6 +2,7 @@ import React from 'react'
 import throttle from 'lodash/throttle'
 import MediaQuery from 'react-responsive'
 import {loadState, saveState} from '../lib/localStorage'
+import {TutorialState} from '../constants'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Paper from 'material-ui/Paper'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
@@ -33,23 +34,8 @@ class App extends React.Component {
 
   get initialState() {
     const localState = loadState()
-    if (localState) {
-      return {
-        ...localState,
-        isFormModalOpen: false,
-        isSettingModalOpen: false,
-      }
-    }
-
-    const initialTask = {
-      name: '',
-      length: 30,
-      color: '#fafafa',
-    }
     return {
-      tasks: Array(36).fill(initialTask),
-      start: 6,
-      end: 24,
+      ...localState || TutorialState,
       isFormModalOpen: false,
       isSettingModalOpen: false,
     }
