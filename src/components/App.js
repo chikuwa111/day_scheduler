@@ -22,6 +22,7 @@ class App extends React.Component {
     this.updateTasksAction = this.updateTasks.bind(this)
     this.removeTaskAction = this.removeTask.bind(this)
     this.addTaskAction = this.addTask.bind(this)
+    this.addTutorialTasksAction = this.addTutorialTasks.bind(this)
     this.fillTimeTableAction = this.fillTimeTable.bind(this)
     this.removeExtraTasksAction = this.removeExtraTasks.bind(this)
     this.updateTimelineStartAction = this.updateTimelineStart.bind(this)
@@ -67,6 +68,15 @@ class App extends React.Component {
     this.setState({
       tasks: [
         task,
+        ...this.state.tasks,
+      ]
+    })
+  }
+
+  addTutorialTasks() {
+    this.setState({
+      tasks: [
+        ...TutorialState.tasks,
         ...this.state.tasks,
       ]
     })
@@ -146,6 +156,7 @@ class App extends React.Component {
       end: this.state.end,
       updateTimelineStart: this.updateTimelineStartAction,
       updateTimelineEnd: this.updateTimelineEndAction,
+      addTutorialTasks: this.addTutorialTasksAction,
       fillTimeTable: this.fillTimeTableAction,
       removeExtraTasks: this.removeExtraTasksAction,
       updateTasks: this.updateTasksAction,

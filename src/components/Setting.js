@@ -9,6 +9,7 @@ const Setting = (props) => {
     end,
     updateTimelineStart,
     updateTimelineEnd,
+    addTutorialTasks,
     fillTimeTable,
     removeExtraTasks,
     updateTasks,
@@ -42,6 +43,16 @@ const Setting = (props) => {
             <MenuItem key={v} value={v} primaryText={`${v}`}/>
           ))}
         </SelectField>
+      </div>
+
+      <p style={{fontSize: '.5em'}}>*以下のアクションは全てタイムテーブルに変更を加えます*</p>
+
+      <div style={{marginBottom: 12}}>
+        <RaisedButton
+          primary
+          label='ADD TUTORIAL'
+          onClick={() => {if(window.confirm('Are you sure?')){addTutorialTasks()}}}
+        />
       </div>
 
       <div style={{marginBottom: 12}}>

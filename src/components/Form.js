@@ -43,7 +43,7 @@ class Form extends React.Component {
       <form onSubmit={this.onSubmit.bind(this)} style={{padding: 10}}>
         <TextField
           autoFocus
-          hintText='Eat breakfast'
+          hintText='Have breakfast'
           value={name}
           onChange={this.onNameChange.bind(this)}
           style={{width: '100%'}}
