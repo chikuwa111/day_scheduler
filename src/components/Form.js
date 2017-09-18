@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField'
 import Slider from 'material-ui/Slider'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import RaisedButton from 'material-ui/RaisedButton'
+import {Colors, TimeLengths} from '../constants'
 
 class Form extends React.Component {
   constructor(props) {
@@ -16,19 +17,6 @@ class Form extends React.Component {
       length: 30,
       color: '#fafafa',
     }
-  }
-
-  get Lengths() {
-    return [30, 60, 90, 120]
-  }
-
-  get Colors() {
-    return [
-      '#fafafa', // white
-      '#ffd180', // orange
-      '#80d8ff', // blue
-      '#ccff90', // green
-    ]
   }
 
   onNameChange(e) {
@@ -63,7 +51,7 @@ class Form extends React.Component {
         <p>Length: {length}min</p>
         <div style={{display: 'flex', justifyContent: 'space-around'}}>
           {
-            this.Lengths.map((v) => (
+            TimeLengths.map((v) => (
               <FloatingActionButton
                 key={v}
                 mini
@@ -86,7 +74,7 @@ class Form extends React.Component {
         <p>Color</p>
         <div style={{display: 'flex', justifyContent: 'space-around', marginBottom: 10}}>
           {
-            this.Colors.map((v) => (
+            Colors.map((v) => (
               <FloatingActionButton
                 key={v}
                 mini
